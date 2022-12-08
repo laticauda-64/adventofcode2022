@@ -1,21 +1,12 @@
 import { rawInput } from "./input/rawInput";
 
-const answer: number = rawInput
+const totalCaloriesList: number[] = rawInput
    .split("\n\n")
    .map((e) => e.split("\n").map(Number))
-   .map((e) => e.reduce((a, b) => a + b))
-   .reduce((a, b) => Math.max(a, b), -Infinity);
+   .map((e) => e.reduce((a, b) => a + b));
 
-console.log(answer);
+const top1Cal: number = totalCaloriesList.reduce((a, b) => Math.max(a, b), -Infinity);
+const top2Cal: number = totalCaloriesList.filter((e) => e !== top1Cal).reduce((a, b) => Math.max(a, b), -Infinity);
+const top3Cal: number = totalCaloriesList.filter((e) => e !== top1Cal && e !== top2Cal).reduce((a, b) => Math.max(a, b), -Infinity);
 
-// function findTheElf(acc: number[], curr: number[]): number[] {
-//    let maxValue = 0;
-//    if (acc.reduce((a, b) => a + b) < curr.reduce((a, b) => a + b)) {
-//       maxValue = curr.reduce((a, b) => a + b);
-//    }
-//    return [maxValue];
-// }
-
-// const fatestElf: number[] = puzzleInput.reduce(findTheElf, [0]);
-
-// console.log("The Elf carrying the most calories is the elf number " + fatestElf[0]);
+console.log(`Total is : ${top1Cal + top2Cal + top3Cal}`);
