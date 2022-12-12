@@ -6,16 +6,17 @@ export const calculateRowScore = (round: string): number => {
    // Memo
    // ABC for opponent, XYZ current player
    // A,X for Rock, B,Y for Paper, and C,Z for Scissors
+   // X = lose, Y = draw, Z = win
    // Score 1 for Rock, 2 for Paper, and 3 for Scissors
    // Score 0 for lost, 3 for draw, and 6 for won
 
    switch (round) {
       case "A X":
-         return 1 + 3;
-      case "A Y":
-         return 2 + 6;
-      case "A Z":
          return 3 + 0;
+      case "A Y":
+         return 1 + 3;
+      case "A Z":
+         return 2 + 6;
       case "B X":
          return 1 + 0;
       case "B Y":
@@ -23,11 +24,11 @@ export const calculateRowScore = (round: string): number => {
       case "B Z":
          return 3 + 6;
       case "C X":
-         return 1 + 6;
-      case "C Y":
          return 2 + 0;
-      case "C Z":
+      case "C Y":
          return 3 + 3;
+      case "C Z":
+         return 1 + 6;
       default:
          return 0;
    }
