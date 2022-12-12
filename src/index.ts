@@ -19,7 +19,7 @@ export const findLonelyChar = (twoCompartmentsBag: string[]): string => {
    for (const letter of twoCompartmentsBag[0]) {
       if (twoCompartmentsBag[1].includes(letter)) return letter;
    }
-   throw new Error("Can't find any pair in this bag...");
+   throw new Error("Can't find any pair in this bag..." + `\nBag : ${twoCompartmentsBag}`);
 };
 
 export const itemPriorityCost = (item: string): number => {
@@ -30,6 +30,12 @@ export const itemPriorityCost = (item: string): number => {
    return item.charCodeAt(0) - 38;
 };
 
-const finalScore = 0;
+export const reducer = (acc: number, curr: string) => {
+   const bag: string[] = divideStringInTwo(curr);
+   const lonelyItem: string = findLonelyChar(bag);
+   return itemPriorityCost(lonelyItem) + acc;
+};
 
-console.log(divideStringInTwo("ABCABC"));
+const finalScore: number = cleanArrayOfStrings.reduce(reducer, 0);
+
+console.log(finalScore);

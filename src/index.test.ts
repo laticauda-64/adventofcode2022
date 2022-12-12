@@ -1,5 +1,5 @@
 import { rawInput } from "./input/rawInput";
-import { cleanArrayOfStrings, findLonelyChar, itemPriorityCost } from ".";
+import { cleanArrayOfStrings, findLonelyChar, itemPriorityCost, reducer } from ".";
 import { divideStringInTwo } from ".";
 
 describe("cleanArrayOfStrings", () => {
