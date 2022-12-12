@@ -29,3 +29,13 @@ describe("calculateRowScore", () => {
       expect(calculateRowScore(round)).toEqual(6);
    });
 });
+
+describe("reduce with calculateRowScore should give right result", () => {
+   it("should be 15", () => {
+      expect(
+         ["A Y", "B X", "C Z"].reduce((acc: number, curr: string): number => {
+            return calculateRowScore(curr) + acc;
+         }, 0)
+      ).toEqual(15);
+   });
+});

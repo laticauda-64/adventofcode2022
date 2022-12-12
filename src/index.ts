@@ -33,6 +33,8 @@ export const calculateRowScore = (round: string): number => {
    }
 };
 
-const finalScore = 0;
+const finalScore = cleanArrayOfStrings.reduce((acc: number, curr: string): number => {
+   return calculateRowScore(curr) + acc;
+}, 0);
 
-console.log(cleanArrayOfStrings);
+console.log(finalScore);
