@@ -1,5 +1,5 @@
 import { rawInput } from "./input/rawInput";
-import { cleanArrayOfStrings } from ".";
+import { cleanArrayOfStrings, findLonelyChar } from ".";
 import { divideStringInTwo } from ".";
 
 describe("cleanArrayOfStrings", () => {
@@ -22,5 +22,17 @@ describe("divideStringInTwo", () => {
       expect(() => {
          divideStringInTwo("ABCDE");
       }).toThrow("Every bags should be even !!");
+   });
+});
+
+describe("findLonelyChar", () => {
+   it("should find the character common to both arrays", () => {
+      expect(findLonelyChar(["abcde", "efghi"])).toBe("e");
+   });
+
+   it("should throw if no common characters", () => {
+      expect(() => {
+         findLonelyChar(["abcd", "efghi"]);
+      }).toThrow();
    });
 });

@@ -15,6 +15,13 @@ export const divideStringInTwo = (bag: string): string[] => {
    return [firstHalf, secondHalf];
 };
 
+export const findLonelyChar = (twoCompartmentsBag: string[]): string => {
+   for (const letter of twoCompartmentsBag[0]) {
+      if (twoCompartmentsBag[1].includes(letter)) return letter;
+   }
+   throw new Error("Can't find any pair in this bag...");
+};
+
 const finalScore = 0;
 
 console.log(divideStringInTwo("ABCABC"));
