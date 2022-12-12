@@ -12,5 +12,5 @@
    },
    "plugins": ["@typescript-eslint", "prettier"],
    "rules": { "prettier/prettier": "warn", "prefer-const": "warn" },
-   "ignorePatterns": ["**/build/*.js"]
+   "ignorePatterns": ["**/build/*.js", "jest.config.js"]
 }
