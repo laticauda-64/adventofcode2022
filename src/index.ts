@@ -22,6 +22,14 @@ export const findLonelyChar = (twoCompartmentsBag: string[]): string => {
    throw new Error("Can't find any pair in this bag...");
 };
 
+export const itemPriorityCost = (item: string): number => {
+   // Check for Upper or lowercase
+   if (item === item.toLowerCase()) {
+      return item.charCodeAt(0) - 96;
+   }
+   return item.charCodeAt(0) - 38;
+};
+
 const finalScore = 0;
 
 console.log(divideStringInTwo("ABCABC"));

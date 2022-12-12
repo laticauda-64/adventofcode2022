@@ -1,5 +1,5 @@
 import { rawInput } from "./input/rawInput";
-import { cleanArrayOfStrings, findLonelyChar } from ".";
+import { cleanArrayOfStrings, findLonelyChar, itemPriorityCost } from ".";
 import { divideStringInTwo } from ".";
 
 describe("cleanArrayOfStrings", () => {
@@ -34,5 +34,17 @@ describe("findLonelyChar", () => {
       expect(() => {
          findLonelyChar(["abcd", "efghi"]);
       }).toThrow();
+   });
+});
+
+describe("itemPriorityCost", () => {
+   it("should return the correct priority number according to item case", () => {
+      expect(itemPriorityCost("a")).toBe(1);
+      expect(itemPriorityCost("b")).toBe(2);
+      expect(itemPriorityCost("c")).toBe(3);
+      expect(itemPriorityCost("z")).toBe(26);
+      expect(itemPriorityCost("A")).toBe(27);
+      expect(itemPriorityCost("B")).toBe(28);
+      expect(itemPriorityCost("Z")).toBe(52);
    });
 });
