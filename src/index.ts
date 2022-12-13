@@ -2,24 +2,21 @@ import { rawInput } from "./input/rawInput";
 
 export const cleanArrayOfStrings: string[] = rawInput.split("\n\n").map((e) => e.split("\n"))[0];
 
-export const divideStringInTwo = (bag: string): string[] => {
-   if (bag.length % 2 !== 0) {
-      throw new Error("Every bags should be even !!");
+export const getGroupsOfThree = (elvesList: string[]): string[][] => {
+   const chunkSize = 3;
+   const result = [];
+   for (let i = 0; i < elvesList.length; i += chunkSize) {
+      const chunk = elvesList.slice(i, i + chunkSize);
+      result.push(chunk);
    }
-
-   const bagSize: number = bag.length / 2;
-
-   const firstHalf = bag.slice(0, bagSize);
-   const secondHalf = bag.slice(bagSize, bag.length);
-
-   return [firstHalf, secondHalf];
+   return result;
 };
 
-export const findLonelyChar = (twoCompartmentsBag: string[]): string => {
-   for (const letter of twoCompartmentsBag[0]) {
-      if (twoCompartmentsBag[1].includes(letter)) return letter;
+export const findCommonChar = (elvesGroup: string[]): string => {
+   for (const letter of elvesGroup[0]) {
+      if (elvesGroup[1].includes(letter) && elvesGroup[2].includes(letter)) return letter;
    }
-   throw new Error("Can't find any pair in this bag..." + `\nBag : ${twoCompartmentsBag}`);
+   throw new Error("Can't find any letter matching in each group..." + `\nGroup : ${elvesGroup}`);
 };
 
 export const itemPriorityCost = (item: string): number => {
@@ -30,12 +27,12 @@ export const itemPriorityCost = (item: string): number => {
    return item.charCodeAt(0) - 38;
 };
 
-export const reducer = (acc: number, curr: string) => {
-   const bag: string[] = divideStringInTwo(curr);
-   const lonelyItem: string = findLonelyChar(bag);
-   return itemPriorityCost(lonelyItem) + acc;
+const elvesGrouped = getGroupsOfThree(cleanArrayOfStrings);
+
+export const reducer = (acc: number, curr: string[]) => {
+   const commonItem: string = findCommonChar(curr);
+   return itemPriorityCost(commonItem) + acc;
 };
 
-const finalScore: number = cleanArrayOfStrings.reduce(reducer, 0);
-
+const finalScore: number = elvesGrouped.reduce(reducer, 0);
 console.log(finalScore);

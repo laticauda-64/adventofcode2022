@@ -1,6 +1,5 @@
 import { rawInput } from "./input/rawInput";
-import { cleanArrayOfStrings, findLonelyChar, itemPriorityCost, reducer } from ".";
-import { divideStringInTwo } from ".";
+import { cleanArrayOfStrings, findCommonChar, itemPriorityCost, getGroupsOfThree } from ".";
 
 describe("cleanArrayOfStrings", () => {
    it("should be an array...", () => {
@@ -11,28 +10,22 @@ describe("cleanArrayOfStrings", () => {
    });
 });
 
-describe("divideStringInTwo", () => {
-   it("should divide the given string in strings of same length", () => {
-      expect(typeof divideStringInTwo("ABCABC")[0]).toBe("string");
-      expect(typeof divideStringInTwo("ABCABC")[1]).toBe("string");
-      expect(divideStringInTwo("ABCABC")[0].length).toEqual(divideStringInTwo("ABCABC")[1].length);
-   });
-
-   it("should throw on even string length", () => {
-      expect(() => {
-         divideStringInTwo("ABCDE");
-      }).toThrow("Every bags should be even !!");
+describe("getGroupsOfThree", () => {
+   it("should return arrays of 3 strings", () => {
+      expect(getGroupsOfThree(cleanArrayOfStrings)[0]).toHaveLength(3);
+      expect(getGroupsOfThree(cleanArrayOfStrings)[1]).toHaveLength(3);
+      expect(getGroupsOfThree(cleanArrayOfStrings)[2]).toHaveLength(3);
    });
 });
 
-describe("findLonelyChar", () => {
+describe("findCommonChar", () => {
    it("should find the character common to both arrays", () => {
-      expect(findLonelyChar(["abcde", "efghi"])).toBe("e");
+      expect(findCommonChar(["abcz", "defz", "ghiz"])).toBe("z");
    });
 
    it("should throw if no common characters", () => {
       expect(() => {
-         findLonelyChar(["abcd", "efghi"]);
+         findCommonChar(["abc", "def", "ghi"]);
       }).toThrow();
    });
 });
